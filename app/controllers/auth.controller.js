@@ -41,23 +41,6 @@ exports.signup = (req, res) => {
 					});
 				}
 			);
-		} else {
-			Role.find({ name: "user" }, (err, role) => {
-				if (err) {
-					res.status(500).send({ message: err });
-					return;
-				}
-
-				user.roles = [role._id];
-				user.save(err => {
-					if (err) {
-						res.status(500).send({ message: err });
-						return;
-					}
-
-					res.send({ message: "User was registered successfully!" });
-				});
-			});
 		}
 	});
 };
