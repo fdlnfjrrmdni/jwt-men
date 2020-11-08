@@ -20,7 +20,7 @@ let corsOptions = {
 	}
 };
 
-app.use(cors(corsOption));
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
