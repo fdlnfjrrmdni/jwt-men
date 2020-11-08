@@ -2,14 +2,25 @@ require('dotenv').config();
 
 const express = require('express');
 const bodyParser = require('body-parser');
-// const cors = require('cors');
+const cors = require('cors');
 const app = express();
 
 // let corsOption = {
 // 	origin: ['http://localhost:8080','http://localhost:3000','https://jwtmen.herokuapp.com']
 // }
+const blacklist = [undefined];
 
-// app.use(cors(corsOption));
+let corsOptions = {
+	origin: function(origin, callback){
+		if(blacklist.indexOf(origin) != -1){
+			callback(null, true);
+		}else{
+			callback(new Error('Not allowed'));
+		}
+	}
+};
+
+app.use(cors(corsOption));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
