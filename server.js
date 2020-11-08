@@ -2,14 +2,14 @@ require('dotenv').config();
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
+// const cors = require('cors');
 const app = express();
 
-let corsOption = {
-	origin: ['http://localhost:8080','http://localhost:3000','https://jwtmen.herokuapp.com']
-}
+// let corsOption = {
+// 	origin: ['http://localhost:8080','http://localhost:3000','https://jwtmen.herokuapp.com']
+// }
 
-app.use(cors(corsOption));
+// app.use(cors(corsOption));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
