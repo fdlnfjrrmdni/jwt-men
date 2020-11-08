@@ -20,37 +20,6 @@ verifyToken = (req, res, next) => {
 	});
 };
 
-isSuperadmin = (req, res, next) => {
-	User.findById(req.userId).exec((err, user) => {
-		if (err) {
-			res.status(500).send({ message: err });
-			return;
-		}
-
-		Role.find(
-			{
-				_id: { $in: user.roles }
-			},
-			(err, roles) => {
-				if (err) {
-					res.status(500).send({ message: err });
-					return;
-				}
-
-				for (let i=0; i < roles.length; i++) {
-					if (roles[i].name === "superadmin") {
-						next();
-						return;
-					}
-				}
-
-				res.status(403).send({ message: "Require Superadmin Role!" });
-				return;
-			}
-		);
-	});
-};
-
 isAdmin = (req, res, next) => {
 	User.findById(req.userId).exec((err, user) => {
 		if (err) {
@@ -82,106 +51,9 @@ isAdmin = (req, res, next) => {
 	});
 };
 
-isDirector = (req, res, next) => {
-	User.findById(req.userId).exec((err, user) => {
-		if (err) {
-			res.status(500).send({ message: err });
-			return;
-		}
-
-		Role.find(
-			{
-				_id: { $in: user.roles }
-			},
-			(err, roles) => {
-				if (err) {
-					res.status(500).send({ message: err });
-					return;
-				}
-
-				for (let i=0; i < roles.length; i++) {
-					if (roles[i].name === "director") {
-						next();
-						return;
-					}
-				}
-
-				res.status(403).send({ message: "Require director Role!" });
-				return;
-			}
-		);
-	});
-};
-
-isHoe = (req, res, next) => {
-	User.findById(req.userId).exec((err, user) => {
-		if (err) {
-			res.status(500).send({ message: err });
-			return;
-		}
-
-		Role.find(
-			{
-				_id: { $in: user.roles }
-			},
-			(err, roles) => {
-				if (err) {
-					res.status(500).send({ message: err });
-					return;
-				}
-
-				for (let i=0; i < roles.length; i++) {
-					if (roles[i].name === "hoe") {
-						next();
-						return;
-					}
-				}
-
-				res.status(403).send({ message: "Require head of engineering Role!" });
-				return;
-			}
-		);
-	});
-};
-
-isOperator = (req, res, next) => {
-	User.findById(req.userId).exec((err, user) => {
-		if (err) {
-			res.status(500).send({ message: err });
-			return;
-		}
-
-		Role.find(
-			{
-				_id: { $in: user.roles }
-			},
-			(err, roles) => {
-				if (err) {
-					res.status(500).send({ message: err });
-					return;
-				}
-
-				for (let i=0; i < roles.length; i++) {
-					if (roles[i].name === "operator") {
-						next();
-						return;
-					}
-				}
-
-				res.status(403).send({ message: "Require operator Role!" });
-				return;
-			}
-		);
-	});
-};
-
 const authJwt = {
 	verifyToken,
-	isSuperadmin,
 	isAdmin,
-	isDirector,
-	isHoe,
-	isOperator
 };
 
 module.exports = authJwt;

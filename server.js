@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express();
 
 let corsOption = {
-	origin: 'http://localhost:3000'
+	origin: ['http://localhost:8080','https://jwtmern.herokuapp.com']
 }
 
 app.use(cors(corsOption));
@@ -22,8 +22,9 @@ app.get('/', (req, res) => {
 
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
+require('./app/routes/goods.routes')(app);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}.`);
 })

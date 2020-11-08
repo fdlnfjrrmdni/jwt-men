@@ -12,13 +12,7 @@ module.exports = function(app) {
 
 	app.get("/api/test/all", controller.allAccess);
 
-	app.get("/api/test/superadmin", [authJwt.verifyToken, authJwt.isSuperadmin], controller.superadminBoard);
+	app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
 
 	app.get("/api/test/admin", [authJwt.verifyToken, authJwt.isAdmin], controller.adminBoard);
-
-	app.get("/api/test/director", [authJwt.verifyToken, authJwt.isDirector], controller.directorBoard);
-
-	app.get("/api/test/hoe", [authJwt.verifyToken, authJwt.isHoe], controller.hoeBoard);
-
-	app.get("/api/test/operator", [authJwt.verifyToken, authJwt.isOperator], controller.operatorBoard);
 };
