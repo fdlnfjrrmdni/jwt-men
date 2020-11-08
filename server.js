@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express();
 
 let corsOption = {
-	origin: ['http://localhost:8080','https://jwtmen.herokuapp.com']
+	origin: ['http://localhost:8080','http://localhost:3000','https://jwtmen.herokuapp.com']
 }
 
 app.use(cors(corsOption));
