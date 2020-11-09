@@ -24,7 +24,7 @@ exports.create = (req, res) => {
             res.status(500).send({ message: err });
             return;
         }
-        goods.group = group._id;
+        goods.group = group.name;
         goods.save(err => {
             if (err) {
               res.status(500).send({ message: err });
