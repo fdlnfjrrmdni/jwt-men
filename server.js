@@ -5,20 +5,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
-// let corsOption = {
-// 	origin: ['http://localhost:8080','http://localhost:3000','https://jwtmen.herokuapp.com']
-// }
-const blacklist = [undefined];
-
 let corsOptions = {
-	origin: function(origin, callback){
-		if(blacklist.indexOf(origin) != -1){
-			callback(null, true);
-		}else{
-			callback(new Error('Not allowed'));
-		}
-	}
-};
+	origin: ['http://localhost:8080','http://localhost:3000','https://jwtmen.herokuapp.com']
+}
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
@@ -34,6 +23,7 @@ app.get('/', (req, res) => {
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 require('./app/routes/goods.routes')(app);
+require('./app/routes/group.routes')(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
