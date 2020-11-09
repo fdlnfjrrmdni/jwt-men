@@ -5,10 +5,7 @@ const Goods = mongoose.model(
 	new mongoose.Schema({
       	code: String,
       	description: String,
-      	group: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "Group"
-		},
+      	group: String,
       	by: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "User"
