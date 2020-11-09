@@ -79,7 +79,7 @@ exports.update = (req, res) => {
             res.status(500).send({ message: err });
             return;
         } else {
-          req.body.group = group._id;
+          req.body.group = group.name;
           Goods.findByIdAndUpdate(id, req.body, { useFindAndModify: false }).then(data => {
             if (!data) {
               res.status(404).send({
