@@ -5,11 +5,14 @@ const Goods = mongoose.model(
 	new mongoose.Schema({
       	code: String,
       	description: String,
-      	group: String,
+      	group: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Group"
+        },
       	by: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "User"
-		}
+    			type: mongoose.Schema.Types.ObjectId,
+    			ref: "User"
+    		}
     },
     { timestamps: true })
 );

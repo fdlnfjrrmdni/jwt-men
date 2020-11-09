@@ -3,12 +3,13 @@ const Goods = db.goods;
 const Group = db.group;
 
 exports.create = (req, res) => {
-  	if (!req.body.code || !req.body.description || !req.body.group) {
+  	if (!req.body.code || !req.body.description || !req.body.group || !req.body.by) {
   		res.status(400).send({ message: "Content can not be empty!" });
   		return;
   	}
 
   	const goods = new Goods({
+      by: req.body.by,
   		code: req.body.code,
   		description: req.body.description
   	})
@@ -24,7 +25,7 @@ exports.create = (req, res) => {
             res.status(500).send({ message: err });
             return;
         }
-        goods.group = group.name;
+        goods.group = group.id;
         goods.save(err => {
             if (err) {
               res.status(500).send({ message: err });
