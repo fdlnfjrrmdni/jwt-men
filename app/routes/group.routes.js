@@ -10,5 +10,5 @@ module.exports = function(app) {
 		next();
 	});
 
-	app.get("/api/groups", [authJwt.verifyToken], group.findAll);
+	app.get("/api/groups", group.findAll);
 };
