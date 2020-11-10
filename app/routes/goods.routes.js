@@ -16,7 +16,7 @@ module.exports = function(app) {
 	router.post("/", [authJwt.verifyToken], goods.create);
 
 	// Retrieve all goods
-	router.get("/", [authJwt.verifyToken], goods.findAll);
+	router.get("/", goods.findAll);
 
 	// Retrtieve a single goods
 	router.get("/:id", [authJwt.verifyToken], goods.findOne);
