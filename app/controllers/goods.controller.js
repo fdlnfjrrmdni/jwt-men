@@ -40,9 +40,12 @@ exports.create = (req, res) => {
 
 exports.findAll = (req, res) => {
   	const description = req.query.description;
-  	let condition = description ? { description: { $regex: new RegExp(description), $options: "i" } } : {};
+    const group = req.query.group;
 
-  	Goods.find(condition).then(data => {
+  	let condition = description && { description: { $regex: new RegExp(description), $options: "i" } };
+    let condition2 = group && { 'group': { $regex: new RegExp(group), $options: "i" } };
+
+  	Goods.find(condition || condition2).then(data => {
   		res.send(data);
   	}).catch(err => {
   		res.status(500).send({
