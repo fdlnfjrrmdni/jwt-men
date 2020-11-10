@@ -43,7 +43,7 @@ exports.findAll = (req, res) => {
     const group = req.query.group;
 
   	let condition = description && { description: { $regex: new RegExp(description), $options: "i" } };
-    let condition2 = group && { 'group': { $regex: new RegExp(group), $options: "i" } };
+    let condition2 = group && { group: { $regex: new RegExp(group), $options: "i" } };
 
   	Goods.find(condition || condition2).then(data => {
   		res.send(data);
